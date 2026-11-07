@@ -18,7 +18,7 @@ class Settings(BaseSettings):
 
     @property
     def live_ready(self) -> bool:
-        return bool(self.fmp_api_key.strip())
+        return self.data_provider_mode == "fmp" and bool(self.fmp_api_key.strip())
 
 
 @lru_cache
