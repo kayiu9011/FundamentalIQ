@@ -1,0 +1,11 @@
+{
+  "name": "fundamentaliq-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev:css": "tailwindcss -i ./src/css/input.css -o ./dist/assets/app.css --watch"
+  },
+  "devDependencies": { "tailwindcss": "^3.4.17" }
+}
+

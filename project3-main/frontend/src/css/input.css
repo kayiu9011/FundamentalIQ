@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-ink text-slate-200 antialiased; background-image: radial-gradient(circle at 15% 0%, rgba(37,99,235,.12), transparent 30%), radial-gradient(circle at 90% 20%, rgba(85,214,190,.08), transparent 26%); }
+  :focus-visible { @apply outline-none ring-2 ring-cyan ring-offset-2 ring-offset-ink; }
+}
+@layer components {
+  .card { @apply rounded-2xl border border-line bg-panel/90 shadow-glow; }
+  .label { @apply text-[11px] font-semibold uppercase tracking-[.16em] text-slate-500; }
+  .metric { @apply rounded-xl border border-line/80 bg-slate-950/25 p-4; }
+  .btn { @apply inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-bold transition disabled:cursor-not-allowed disabled:opacity-50; }
+  .input { @apply w-full rounded-xl border border-line bg-slate-950/60 px-4 py-3 text-slate-100 placeholder:text-slate-600; }
+  .badge { @apply inline-flex items-center rounded-full px-2.5 py-1 text-xs font-bold; }
+  .status-PASS { @apply bg-emerald-400/10 text-emerald-300; }
+  .status-FAIL { @apply bg-rose-400/10 text-rose-300; }
+  .status-NA { @apply bg-slate-400/10 text-slate-300; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .spin { animation: spin 1s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+}
+
