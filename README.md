@@ -156,6 +156,8 @@ python -m uvicorn app.main:app --reload
 
 Open the dashboard at <http://127.0.0.1:8000> or the interactive API documentation at <http://127.0.0.1:8000/docs>.
 
+On Windows, after completing the installation, you can also double-click `start-app.bat` in File Explorer. The launcher starts the server on port `8001`, opens the dashboard in your default browser, and stops when you press `Ctrl+C` or close its terminal window.
+
 To run this version beside another local project, select a different port:
 
 ```powershell

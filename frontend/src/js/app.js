@@ -53,8 +53,16 @@ async function initialize() {
   try {
     const [config, catalog] = await Promise.all([api("/api/config/status"), api("/api/screening/criteria")]);
     const badge = $("#modeBadge");
-    badge.textContent = config.provider_mode === "mock" ? "● Illustrative mock data" : config.live_provider_ready ? "● Financial Modeling Prep configured" : "● Financial Modeling Prep needs API key";
-    badge.className = `badge ${config.provider_mode === "mock" ? "bg-amber-400/10 text-amber-300" : config.live_provider_ready ? "bg-emerald-400/10 text-emerald-300" : "bg-rose-400/10 text-rose-300"}`;
+    const mockMode = config.provider_mode === "mock";
+    badge.textContent = mockMode ? "● Illustrative mock data" : config.live_provider_ready ? "● Financial Modeling Prep configured" : "● Financial Modeling Prep needs API key";
+    badge.className = `badge ${mockMode ? "bg-amber-400/10 text-amber-300" : config.live_provider_ready ? "bg-emerald-400/10 text-emerald-300" : "bg-rose-400/10 text-rose-300"}`;
+    setVisible($("#fixtureHelp"), mockMode);
+    $("#ticker").placeholder = mockMode ? "Try NOVA" : "Try AAPL";
+    $("#tickerHelp").textContent = mockMode ? "Choose a fictional fixture or enter its ticker." : "Enter a ticker supported by Financial Modeling Prep.";
+    $("#emptyTitle").textContent = mockMode ? "Start with an illustrative company" : "Search for a company";
+    $("#emptyMessage").textContent = mockMode
+      ? "Choose a fixture above to see the complete workflow. Sample companies are fictional and clearly labeled."
+      : "Enter a ticker above to retrieve and screen its latest available fundamentals.";
     state.defaults = catalog.ruleset;
     const saved = localStorage.getItem("fundamentaliq-ruleset");
     try { state.criteria = saved ? JSON.parse(saved) : structuredClone(state.defaults); }
